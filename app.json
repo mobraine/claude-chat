@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "proxy": {
+        "/v1": {
+          "target": "https://api.anthropic.com",
+          "changeOrigin": true
+        }
+      }
+    }
+  }
+} 
