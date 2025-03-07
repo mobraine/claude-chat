@@ -1,29 +1,23 @@
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
-import Anthropic from '@anthropic-ai/sdk';
-import { CLAUDE_API_KEY } from '../config/keys';
 
 export default function ChatView({ chat, onUpdateChat }) {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const API_BASE_URL = 'https://hello-k8s-pr-1068.dev.dialoguecorp.com/members';
+
   const generateChatTitle = async (messages) => {
     try {
+      const url = new URL(`${API_BASE_URL}/1/chat`);
+      url.searchParams.append('num_conversation', '0');
+      url.searchParams.append('user_input', `Based on this conversation, generate a very brief, concise title (4-6 words max):${messages}`);
       console.warn('🏷️ Generating chat title...');
-      const response = await fetch('http://localhost:3000/api/chat', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          model: 'claude-3-sonnet-20240229',
-          max_tokens: 50,
-          messages: [{
-            role: 'user',
-            content: `Based on this conversation, generate a very brief, concise title (4-6 words max):
-            ${messages[0].content}`
-          }],
-        }),
       });
 
       if (!response.ok) {
@@ -31,7 +25,7 @@ export default function ChatView({ chat, onUpdateChat }) {
       }
 
       const data = await response.json();
-      const title = data.content[0].text.trim();
+      const title = data.response;
       console.warn('🏷️ Generated title:', title);
       return title;
     } catch (error) {
@@ -58,17 +52,16 @@ export default function ChatView({ chat, onUpdateChat }) {
       };
       onUpdateChat(updatedChat);
       
+      const url = new URL(`${API_BASE_URL}/1/chat`);
+      url.searchParams.append('num_conversation', '0');
+      url.searchParams.append('user_input', message);
+      
       console.warn('⏳ Calling Claude API...');
-      const response = await fetch('http://localhost:3000/api/chat', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          model: 'claude-3-sonnet-20240229',
-          max_tokens: 1024,
-          messages: updatedMessages,
-        }),
       });
 
       if (!response.ok) {
@@ -80,7 +73,7 @@ export default function ChatView({ chat, onUpdateChat }) {
 
       const assistantMessage = { 
         role: 'assistant', 
-        content: data.content[0].text 
+        content: data.response 
       };
       updatedMessages.push(assistantMessage);
       
