@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const anthropic = new Anthropic({
-  apiKey: process.env.CLAUDE_API_KEY,
+  apiKey: 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,
 });
 
 app.post('/api/chat', async (req, res) => {
