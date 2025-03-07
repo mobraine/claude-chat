@@ -7,5 +7,5 @@
   ],
   "buildCommand": "expo export",
   "outputDirectory": "dist",
-  "framework": "expo"
+  "framework": "react-router"
 } 
