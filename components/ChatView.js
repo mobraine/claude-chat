@@ -129,7 +129,7 @@ export default function ChatView({ chat, onUpdateChat }) {
         ))}
         {isLoading && (
           <View style={styles.loadingMessage}>
-            <Text style={styles.loadingText}>Claude is thinking...</Text>
+            <Text style={styles.loadingText}>Dialogue Genius is thinking...</Text>
           </View>
         )}
       </ScrollView>
