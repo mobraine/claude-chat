@@ -8,8 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "server": "node server.js",
-    "build": "expo export:web",
-    "vercel-build": "expo export:web"
+    "build": "expo export",
+    "vercel-build": "expo export"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.18.0",

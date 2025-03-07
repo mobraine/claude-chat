@@ -1,7 +1,7 @@
 {
   "expo": {
     "web": {
-      "bundler": "metro"
+      "bundler": "webpack"
     },
     "extra": {
       "proxy": {
