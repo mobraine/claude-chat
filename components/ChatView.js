@@ -123,7 +123,7 @@ export default function ChatView({ chat, onUpdateChat }) {
               msg.role === 'user' ? styles.userMessage : styles.assistantMessage
             ]}
           >
-            <Text style={styles.messageRole}>{msg.role === 'user' ? 'You' : 'Claude'}</Text>
+            <Text style={styles.messageRole}>{msg.role === 'user' ? 'You' : 'Dialogue Genius'}</Text>
             <Text style={styles.messageText}>{msg.content}</Text>
           </View>
         ))}
