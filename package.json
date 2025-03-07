@@ -8,8 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "server": "node server.js",
-    "build": "expo export -p web",
-    "vercel-build": "expo export -p web"
+    "build": "expo export",
+    "vercel-build": "expo export"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.18.0",
@@ -24,7 +24,8 @@
     "react-dom": "18.2.0",
     "react-native": "0.73.4",
     "react-native-dotenv": "^3.4.11",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "@expo/webpack-config": "~19.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
